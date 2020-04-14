@@ -1,0 +1,13 @@
+{
+  "translations": {
+    "title": "React.Js with Tailwind Css Template",
+    "general": {
+      "thank_you": "Je vous remercie!",
+      "ok": "OK",
+      "cancel": "Annuler",
+      "close": "Fermer",
+      "sorry": "Uups!",
+      "error_retrieving_data": "Erreur lors de la récupération des données pertinentes"
+    }
+  }
+}

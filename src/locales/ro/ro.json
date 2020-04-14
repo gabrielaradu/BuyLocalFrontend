@@ -1,0 +1,13 @@
+{
+  "translations": {
+    "title": "React.Js with Tailwind Css Template",
+    "general": {
+      "thank_you": "Multumesc!",
+      "ok": "OK",
+      "cancel": "Anulare",
+      "close": "Inchide",
+      "sorry": "Uups!",
+      "error_retrieving_data": "Nu s-au putut incarca datele necesare"
+    }
+  }
+}
