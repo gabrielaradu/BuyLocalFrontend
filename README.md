@@ -1,4 +1,4 @@
-# React.js with TailwindCSS Template
+# BuyLocal Food web application
 
 1. To build the project locally, run:
 
