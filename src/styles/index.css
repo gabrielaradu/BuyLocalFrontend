@@ -75,3 +75,9 @@
 .hover\:grow:hover {
  transform: scale(1.02);
 }
+
+.product_row {
+ border-bottom: 1px solid #ccc;
+ padding-top: 3px;
+ padding-bottom: 3px;
+}

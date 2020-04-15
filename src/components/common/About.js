@@ -3,33 +3,84 @@ import React, {Component} from 'react';
 class About extends Component {
     render() {
         return (
-            <div>
-                <section className="bg-white py-8">
-                    <div className="container py-8 px-6 mx-auto">
-                        <a className="uppercase tracking-wide no-underline hover:no-underline font-bold text-black text-xl mb-8"
-                           href="#">About</a>
-
-                        <p className="mt-8 mb-8 text-black">This template is inspired by the stunning nordic minamalist design - in
-                            particular:
-                            <a className="text-gray-800 underline hover:text-gray-900"
-                               href="http://savoy.nordicmade.com/" target="_blank">Savoy Theme</a> created by <a
-                                className="text-gray-800 underline hover:text-gray-900"
-                                href="https://nordicmade.com/">https://nordicmade.com/</a> and <a
-                                className="text-gray-800 underline hover:text-gray-900"
-                                href="https://www.metricdesign.no/" target="_blank">https://www.metricdesign.no/</a></p>
-
-                        <p className="mb-8 text-black">Lorem ipsum dolor sit amet, consectetur <a href="#">random
-                            link</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Vitae aliquet nec
-                            ullamcorper sit. Nullam eget felis eget nunc lobortis mattis aliquam. In est ante in nibh
-                            mauris. Egestas congue quisque egestas diam in. Facilisi nullam vehicula ipsum a arcu. Nec
-                            nam aliquam sem et tortor consequat. Eget mi proin sed libero enim sed faucibus turpis in.
-                            Hac habitasse platea dictumst quisque. In aliquam sem fringilla ut. Gravida rutrum quisque
-                            non tellus orci ac auctor augue mauris. Accumsan lacus vel facilisis volutpat est velit
-                            egestas dui id. At tempor commodo ullamcorper a. Volutpat commodo sed egestas egestas
-                            fringilla. Vitae congue eu consequat ac.</p>
+            <div className="container mx-auto bg-white py-8 border-t border-gray-400">
+                <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="lg:text-center">
+                        <p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Twilio Hackathon</p>
+                        <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+                            Buy food locally
+                        </h3>
+                        <p className="mt-4 max-w-4xl text-xl leading-7 text-black lg:mx-auto">
+                            Because of #COVID-19 and #ClimateEmergency, we must support local businesses and buy food locally. The
+                            delivery will be in the utmost safety conditions we can, no money is exchange at all. #StayAtHome
+                        </p>
                     </div>
-                </section>
+
+                    <div className="mt-10 sm:inline-flex">
+                        <ul className="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">
+                            <li>
+                                <div className="flex mb-4">
+                                    <div className="flex-shrink-0">
+                                        <div
+                                            className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                            <svg className="h-6 w-6" stroke="currentColor" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div className="ml-4">
+                                        <h5 className="text-lg leading-6 font-medium text-black">You choose what food/ingredients you want</h5>
+                                        <p className="mt-1 text-base leading-6 text-black">
+                                            You will use your phone number for this pre-order, at which you will receive a verification SMS Code. It's your job to know if your mobile package can receive SMS
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="mt-10 md:mt-0">
+                                <div className="flex mb-4">
+                                    <div className="flex-shrink-0">
+                                        <div
+                                            className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                            <svg className="h-6 w-6" stroke="currentColor" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div className="ml-4">
+                                        <h5 className="text-lg leading-6 font-medium text-black">Vendors will confirm their stock before the order is complete</h5>
+                                        <p className="mt-2 text-base leading-6 text-black">
+                                            Wait for vendors to approve the order or update it with as much as stock they currently have. If there is a full or partial approve from vendors, you can wait for the food delivery
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="mt-10 md:mt-0">
+                                <div className="flex mb-4">
+                                    <div className="flex-shrink-0">
+                                        <div
+                                            className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                            <svg className="h-6 w-6" stroke="currentColor" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div className="ml-4">
+                                        <h5 className="text-lg leading-6 font-medium text-black">Wait for delivery and pay online</h5>
+                                        <p className="mt-2 text-base leading-6 text-black">
+                                            Food arrived, then you will receive by SMS the payment link and successfully complete the payment
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }

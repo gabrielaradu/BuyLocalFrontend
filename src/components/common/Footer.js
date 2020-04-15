@@ -26,6 +26,20 @@ class Footer extends Component {
                                 </ul>
                             </div>
                         </div>
+                        <div className="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
+                            <nav>
+                                <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+                                    <li><a
+                                        className="inline-block no-underline hover:text-black hover:underline py-2 px-4 text-black"
+                                        href="#" aria-label="the shopping option from the menu"
+                                        aria-labelledby="the shopping option from the menu">Privacy Policy</a></li>
+                                    <li><a
+                                        className="inline-block no-underline hover:text-black hover:underline py-2 px-4 text-black"
+                                        href="#" aria-label="the about option from the menu"
+                                        aria-labelledby="the about option from the menu">Terms And Conditions</a></li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </footer>
