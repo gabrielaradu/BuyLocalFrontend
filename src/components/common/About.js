@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class About extends Component {
     render() {
         return (
-            <div className="container mx-auto bg-white py-8 border-t border-gray-400">
+            <div className="container mx-auto bg-white py-8 border-t border-gray-400 shadow-md">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="lg:text-center">
                         <p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Twilio Hackathon</p>
