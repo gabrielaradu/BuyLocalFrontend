@@ -9,9 +9,5 @@ export class ProductService {
         return this.ajaxService;
     }
 
-    getAllProducts() { return this.getAjaxService().get('/products')};
-
-    verifyCustomerPhoneNumber(phone) { return this.getAjaxService().post('', phone)};
-
-    createPreOrder(order) { return this.getAjaxService().post('', order)};
+    getAllProducts() { return this.getAjaxService().get('/products/')};
 }
