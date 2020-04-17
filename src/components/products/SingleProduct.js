@@ -1,4 +1,18 @@
 import React, {Component} from 'react';
+import Select from 'react-select';
+
+const generalQuantities = [
+    {value: '1', label: '1'},
+    {value: '2', label: '2'},
+    {value: '3', label: '3'},
+    {value: '4', label: '4'},
+    {value: '5', label: '5'},
+    {value: '6', label: '6'},
+    {value: '7', label: '7'},
+    {value: '8', label: '8'},
+    {value: '9', label: '9'},
+    {value: '10', label: '10'},
+];
 
 class SingleProduct extends Component {
 
@@ -12,7 +26,7 @@ class SingleProduct extends Component {
         if (this.product.maxQuantityPerOrder > 0) {
             this.showMaxQuantity = this.product.maxQuantityPerOrder + " " + this.product.quantityType;
         }
-        if(!this.product.inStock) {
+        if (!this.product.inStock) {
             this.isProductInStock = "Out Of Stock";
         }
         return (
@@ -30,7 +44,7 @@ class SingleProduct extends Component {
                             <div className="text-sm leading-5 text-blue-600">Price: {this.product.price} {this.product.currency}</div>
                         </div>
                         <div className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <input id="price" className="form-input block w-full pl-4 sm:text-sm sm:leading-5" placeholder="0.00"/>
+                            <Select id="price" options={generalQuantities} label="Select quantity for the selected product"/>
                         </div>
                         <div className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-green-800">{this.isProductInStock}</span>
