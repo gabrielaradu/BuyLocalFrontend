@@ -47,7 +47,7 @@ class Products extends Component {
                             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
                                 <div className="flex bg-pink-200">
                                     <div className="flex-1 text-gray-200 text-center px-4 py-2 m-2">
-                                        <dd className="mt-1 text-sm leading-5 text-black sm:mt-0 sm:col-span-4">
+                                        <dd className="mt-1 text-lg leading-5 text-black sm:mt-0 sm:col-span-4">
                                             The order is not final until we confirm it by SMS
                                         </dd>
                                     </div>

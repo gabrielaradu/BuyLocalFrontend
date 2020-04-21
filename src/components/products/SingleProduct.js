@@ -52,7 +52,7 @@ class SingleProduct extends Component {
                             }
 
                             setSubmitting(false);
-                        }, 400);
+                        }, 200);
                     }}
                     validateOnChange={(values) => console.log("values on change: " + values)}
                 >
@@ -71,10 +71,11 @@ class SingleProduct extends Component {
                                 multiple={false}>
                                 {generalQuantities.map(item => <option value={item.value} key={item.value}>{item.label}</option>)}
                             </Field>
-                            <button
+                            <button id="addProduct" name="addProduct"
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"
                                 type="submit" disabled={isSubmitting}>Add
                             </button>
+                            <label htmlFor="addProduct" className={isSubmitting ? "visible" : "hidden"}> Added</label>
                             <div className="flex items-center text-black font-bold">
                                 Price: {this.product.price} {this.product.currency}
                             </div>
