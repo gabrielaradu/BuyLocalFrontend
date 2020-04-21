@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import Select from 'react-select';
+import {ErrorMessage, Field, Formik} from "formik";
 
 const generalQuantities = [
+    {value: '0', label: '0'},
     {value: '1', label: '1'},
     {value: '2', label: '2'},
     {value: '3', label: '3'},
@@ -30,29 +31,65 @@ class SingleProduct extends Component {
             this.isProductInStock = "Out Of Stock";
         }
         return (
-            <section>
-                <div className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
-                    <div className="flex items-center">
-                        <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" alt=""
-                                 src="https://images.unsplash.com/photo-1558947462-82bc86a0dac6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"/>
-                        </div>
-                        <div className="ml-4">
-                            <div className="text-sm leading-5 font-medium text-gray-900">{this.product.name}</div>
-                            <div className="text-sm leading-5 text-blue-600">Min: {this.product.minQuantityPerOrder} {this.product.quantityType}</div>
-                            <div className="text-sm leading-5 text-blue-600">{this.showMaxQuantity}</div>
-                            <div className="text-sm leading-5 text-blue-600">Price: {this.product.price} {this.product.currency}</div>
-                        </div>
-                        <div className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <Select id="price" options={generalQuantities} label="Select quantity for the selected product"/>
-                        </div>
-                        <div className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-200 text-green-800">{this.isProductInStock}</span>
-                        </div>
-                    </div>
-                </div>
+            <section className="px-2 py-4">
+                <Formik
+                    initialValues={{
+                        name: this.product.name,
+                        minQuantityPerOrder: this.product.minQuantityPerOrder,
+                        quantityType: this.product.quantityType,
+                        price: this.product.price,
+                        currency: this.product.currency
+                    }}
+                    validate={values => {
+                        return {};
+                    }}
+                    onSubmit={(values, {setSubmitting}) => {
+                        setTimeout(() => {
+                            if(values.selectedQuantity > 0) {
+                                console.log("values on submit are: ", values);
+                                this.props.updateListOfAddedItemsFromTheShoppingCart(values);
+                                this.props.addToTotal(values);
+                            }
+
+                            setSubmitting(false);
+                        }, 400);
+                    }}
+                    validateOnChange={(values) => console.log("values on change: " + values)}
+                >
+                    {({
+                          handleSubmit,
+                          isSubmitting,
+                      }) => (
+                        <form onSubmit={handleSubmit}>
+                            <Field type="name" name="name"/>
+                            <ErrorMessage name="name" component="div"/>
+                            <Field
+                                component="select"
+                                id="selectedQuantity"
+                                name="selectedQuantity"
+                                onChange={(e)=>console.log(this.value)}
+                                multiple={false}>
+                                {generalQuantities.map(item => <option value={item.value} key={item.value}>{item.label}</option>)}
+                            </Field>
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"
+                                type="submit" disabled={isSubmitting}>Add
+                            </button>
+                            <div className="flex items-center">
+                                Price: {this.product.price} {this.product.currency}
+                            </div>
+                            <div className="flex items-center">
+                                Min quantity: {this.product.minQuantityPerOrder} {this.product.quantityType}
+                            </div>
+                        </form>
+                    )}
+                </Formik>
             </section>
         );
+    }
+
+    onChangedSelectedQuantity(value) {
+        console.log("changed value: " + value);
     }
 }
 
