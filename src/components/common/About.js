@@ -7,13 +7,9 @@ class About extends Component {
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="lg:text-center">
                         <p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Twilio Hackathon</p>
-                        <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+                        <h3 className="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
                             Buy food locally
                         </h3>
-                        <p className="mt-4 max-w-4xl text-xl leading-7 text-black lg:mx-auto">
-                            Because of #COVID-19 and #ClimateEmergency, we must support local businesses and buy food locally. The
-                            delivery will be in the utmost safety conditions we can, no money is exchange at all. #StayAtHome
-                        </p>
                     </div>
 
                     <div className="mt-10 sm:inline-flex">

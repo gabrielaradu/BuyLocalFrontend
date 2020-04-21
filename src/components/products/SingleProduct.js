@@ -31,7 +31,7 @@ class SingleProduct extends Component {
             this.isProductInStock = "Out Of Stock";
         }
         return (
-            <section className="px-2 py-4">
+            <section className="p-4">
                 <Formik
                     initialValues={{
                         name: this.product.name,
@@ -61,13 +61,13 @@ class SingleProduct extends Component {
                           isSubmitting,
                       }) => (
                         <form onSubmit={handleSubmit}>
-                            <Field type="name" name="name"/>
+                            <Field type="name" name="name" className="text-pink-500 font-bold"/>
                             <ErrorMessage name="name" component="div"/>
                             <Field
                                 component="select"
                                 id="selectedQuantity"
                                 name="selectedQuantity"
-                                onChange={(e)=>console.log(this.value)}
+                                className={"text-black p-2"}
                                 multiple={false}>
                                 {generalQuantities.map(item => <option value={item.value} key={item.value}>{item.label}</option>)}
                             </Field>
@@ -75,10 +75,10 @@ class SingleProduct extends Component {
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3"
                                 type="submit" disabled={isSubmitting}>Add
                             </button>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-black font-bold">
                                 Price: {this.product.price} {this.product.currency}
                             </div>
-                            <div className="flex items-center">
+                            <div className="flex items-center text-black">
                                 Min quantity: {this.product.minQuantityPerOrder} {this.product.quantityType}
                             </div>
                         </form>
