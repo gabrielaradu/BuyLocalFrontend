@@ -35,7 +35,6 @@ class VendorDetailsItem extends Component {
     };
 
     addToTotal = (item) => {
-        console.log(item.currency)
         this.props.addToTotal(item.selectedQuantity, item.price, item.currency);
     }
 }
