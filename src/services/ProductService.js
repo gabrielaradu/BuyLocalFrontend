@@ -10,4 +10,8 @@ export class ProductService {
     }
 
     getAllProducts() { return this.getAjaxService().get('/products/')};
+
+    preOrderProducts(bodyData) {
+        return this.getAjaxService().post("/pre-order/", bodyData);
+    }
 }

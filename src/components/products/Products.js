@@ -14,6 +14,9 @@ class Products extends Component {
                 vendorName: '',
                 products: [],
             }],
+            selectedProducts: [],
+            totalSum: 0.00,
+            currency: '',
         }
     }
 
@@ -37,7 +40,8 @@ class Products extends Component {
                                 </thead>
                                 <tbody>
                                 {Object.entries(this.state.vendorsAndTheirProducts).map(option => {
-                                    return <VendorDetailsItem key={option[0]} data={option}/>
+                                    return <VendorDetailsItem key={option[0]} data={option} updateSelectedProducts={(product) => this.updateSelectedProducts(product)}
+                                                              addToTotal={(selectedQuantity, price, currency) => this.addToTotal(selectedQuantity, price, currency)}/>
                                 })}
                                 </tbody>
                             </table>
@@ -50,12 +54,12 @@ class Products extends Component {
                                     </div>
                                     <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2">
                                         <dt className="text-sm leading-5 font-bold text-black">
-                                            Total: 0.00 RON
+                                            Total: {this.state.totalSum} {this.state.currency}
                                         </dt>
                                     </div>
                                     <div className="text-gray-700 text-center m-2">
-                                        <button
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Order
+                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.savePreOrder()}>
+                                            Order
                                         </button>
                                     </div>
                                 </div>
@@ -77,9 +81,28 @@ class Products extends Component {
         });
     };
 
+    savePreOrder = async () => {
+        debugger
+        await this.getProducts().preOrderProducts(this.state.selectedProducts);
+    };
+
     noDataFound() {
 
     }
+
+    updateSelectedProducts = (product) => {
+        this.setState((prevState) => {
+            prevState.selectedProducts.push(product);
+        });
+    };
+
+    addToTotal = (selectedQuantity, price, currency) => {
+        let newTemporarySum = selectedQuantity * price;
+        this.setState((prevState) => {
+            return prevState.totalSum += newTemporarySum
+        });
+        this.setState({currency: currency})
+    };
 
     _getProductService() {
         if (!this.productService) {
