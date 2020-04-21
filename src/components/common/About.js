@@ -6,7 +6,7 @@ class About extends Component {
             <div className="container mx-auto bg-white py-8 border-t border-gray-400">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="lg:text-center">
-                        <p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Twilio Hackathon</p>
+                        <p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Twilio Hackathon - this is a demo</p>
                         <h3 className="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
                             Buy food locally
                         </h3>
