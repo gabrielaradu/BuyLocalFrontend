@@ -26,7 +26,7 @@ class Products extends Component {
 
     render() {
         return (
-            <section className="bg-white py-8">
+            <section className="bg-white">
                 <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
                     <div className="w-2/3 mx-auto">
                         <div className="bg-white shadow-md rounded my-6">
@@ -34,8 +34,7 @@ class Products extends Component {
                                 className="text-left w-full border-collapse">
                                 <thead>
                                 <tr>
-                                    <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Local Vendor</th>
-                                    <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Products</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -46,8 +45,8 @@ class Products extends Component {
                                 </tbody>
                             </table>
                             <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-                                <div className="flex bg-gray-200">
-                                    <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2">
+                                <div className="flex bg-pink-200">
+                                    <div className="flex-1 text-gray-200 text-center px-4 py-2 m-2">
                                         <dd className="mt-1 text-sm leading-5 text-black sm:mt-0 sm:col-span-4">
                                             The order is not final until we confirm it by SMS
                                         </dd>
