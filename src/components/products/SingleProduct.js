@@ -34,6 +34,7 @@ class SingleProduct extends Component {
             <section className="p-4">
                 <Formik
                     initialValues={{
+                        id: this.product.id,
                         name: this.product.name,
                         minQuantityPerOrder: this.product.minQuantityPerOrder,
                         quantityType: this.product.quantityType,
@@ -46,7 +47,6 @@ class SingleProduct extends Component {
                     onSubmit={(values, {setSubmitting}) => {
                         setTimeout(() => {
                             if(values.selectedQuantity > 0) {
-                                console.log("values on submit are: ", values);
                                 this.props.updateListOfAddedItemsFromTheShoppingCart(values);
                                 this.props.addToTotal(values);
                             }
@@ -87,10 +87,6 @@ class SingleProduct extends Component {
                 </Formik>
             </section>
         );
-    }
-
-    onChangedSelectedQuantity(value) {
-        console.log("changed value: " + value);
     }
 }
 

@@ -14,7 +14,7 @@ class Products extends Component {
                 vendorName: '',
                 products: [],
             }],
-            selectedProducts: [],
+            addedProducts: [],
             totalSum: 0.00,
             currency: '',
         }
@@ -33,14 +33,14 @@ class Products extends Component {
                             <table
                                 className="text-left w-full border-collapse">
                                 <thead>
-                                <tr>
-
-                                </tr>
+                                <tr></tr>
                                 </thead>
                                 <tbody>
                                 {Object.entries(this.state.vendorsAndTheirProducts).map(option => {
-                                    return <VendorDetailsItem key={option[0]} data={option} updateSelectedProducts={(product) => this.updateSelectedProducts(product)}
-                                                              addToTotal={(selectedQuantity, price, currency) => this.addToTotal(selectedQuantity, price, currency)}/>
+                                    return <VendorDetailsItem key={option[0]} data={option}
+                                                              addToTotal={(selectedQuantity, price, currency) => this.addToTotal(selectedQuantity, price, currency)}
+                                                              updateProductsForVendor={(vendorId, vendorName, productId, productName, selectedQuantity, quantityType) =>
+                                                                  this.updateProductsForVendor(vendorId, vendorName, productId, productName, selectedQuantity, quantityType)}/>
                                 })}
                                 </tbody>
                             </table>
@@ -57,7 +57,9 @@ class Products extends Component {
                                         </dt>
                                     </div>
                                     <div className="text-gray-700 text-center m-2">
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => this.savePreOrder()}>
+                                        <button
+                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                            onClick={() => this.savePreOrder()}>
                                             Order
                                         </button>
                                     </div>
@@ -81,18 +83,29 @@ class Products extends Component {
     };
 
     savePreOrder = async () => {
-        debugger
-        await this.getProducts().preOrderProducts(this.state.selectedProducts);
+        //TODO add a phone nr here
+        let customerPhoneNumber = "";
+        await this._getProductService().preOrderProducts(this.state.addedProducts, customerPhoneNumber);
     };
 
-    noDataFound() {
+    noDataFound() {}
 
-    }
-
-    updateSelectedProducts = (product) => {
-        this.setState((prevState) => {
-            prevState.selectedProducts.push(product);
-        });
+    updateProductsForVendor = (vendorId, vendorName, productId, productName, selectedQuantity, quantityType) => {
+        let existingData = this.state.addedProducts.length > 0 && this.state.addedProducts.filter((item, index) => item.vendorId === vendorId);
+        if (existingData.length > 0) {
+            // We already have saved something for this vendor. we need to update the product array
+            let products = existingData[0].products;
+            products.push({productId: productId, productName: productName, selectedQuantity: selectedQuantity, quantityType: quantityType});
+        } else {
+            // We don't already have data for this vendor
+            this.setState({
+                addedProducts: [...this.state.addedProducts, {
+                    vendorId: vendorId,
+                    vendorName: vendorName,
+                    products: [{productId: productId, productName: productName, selectedQuantity: selectedQuantity, quantityType: quantityType}],
+                }]
+            });
+        }
     };
 
     addToTotal = (selectedQuantity, price, currency) => {
