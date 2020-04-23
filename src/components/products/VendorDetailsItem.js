@@ -31,7 +31,7 @@ class VendorDetailsItem extends Component {
     }
 
     updateListOfAddedItemsFromTheShoppingCart = (item) => {
-        this.props.updateSelectedProducts(item);
+        this.props.updateProductsForVendor(this.props.data[1].vendorId, this.props.data[1].vendorName, item.id, item.name, item.selectedQuantity, item.quantityType);
     };
 
     addToTotal = (item) => {
