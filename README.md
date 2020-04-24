@@ -27,9 +27,6 @@ This project is part of #TwilioHackathon April 2020
 
 2. To build the project locally, run:
 
-NPM
-- npm install
-
 Yarn
 - yarn install
 
@@ -45,10 +42,7 @@ Yarn
 After the above requirements have been met:
 - Open http://localhost:3000 in a browser and the application should be running.
 
-
- 5. Local development
- 
-
+4. Local development 
 
 - Clone this repository and cd into it
 git clone https://github.com/gabrielaradu/BuyLocalFrontend.git
