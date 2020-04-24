@@ -1,23 +1,18 @@
 # BuyLocal Food web application
 
-1. To build the project locally, run:
+This project is part of #TwilioHackathon April 2020
 
-NPM
-- npm install
-- npm start
-
-Yarn
-- yarn install
-- yarn start
-
-2. Then open localhost:3000 in a browser and the application should be running.
-I used the free Tailwind CSS template by https://www.tailwindtoolbox.com/templates/nordic-store
-
-3. Project Structure:
-
+1. Project Structure:
     - components 
-          a) common    : About.js, Footer.js, Hearder.js
-          b) dashboard : Main.js, MainPage.js            
+          
+          - common    : About.js, Footer.js, Hearder.js
+          
+          - dashboard : Main.js, MainPage.js
+          
+          - products: components related to products
+          
+          - vendors: components related to vendors accepting or denying the orders
+          
     - NotFound.js: renders when the path from router doesn't match anything we expect to
     - Page.js: a "higher order"/parent component for all the other components except NotFound.js Here you can declare the strucutre of any page and create functions that are needed by all. Pass them down to child components using props.
     - Router.js: declare URL paths and associated components
@@ -30,9 +25,48 @@ I used the free Tailwind CSS template by https://www.tailwindtoolbox.com/templat
     - tailwind.js: here you can keep/add/delete whatever you want to customise the entire application. Read more here: https://tailwindcss.com/docs/container
     - postcss.config.js: Tailwind is added to the project as a Postcss plugin. This and autoprefixer are added to this config file
 
-You can download or fork this project in order to save time in your development. Happy Coding.
+2. To build the project locally, run:
 
-License
+NPM
+- npm install
 
-This project has to be used only for ethical projects.
-Copyright (c) 2020. MIT Licensed.
+Yarn
+- yarn install
+
+a) Requirements:
+ - Node.js
+ - A Twilio account
+ 
+b) Twilio Account Settings
+ - Account Sid:	Your primary Twilio account identifier - find this in the Console.
+ - Auth Token: Used to authenticate - just like the above, you'll find this here.
+ - Phone number: A Twilio phone number
+
+After the above requirements have been met:
+- Open http://localhost:3000 in a browser and the application should be running.
+
+
+ 5. Local development
+ 
+
+
+- Clone this repository and cd into it
+git clone https://github.com/gabrielaradu/BuyLocalFrontend.git
+
+- Open the project in your IDE of choice. I use IntelliJ
+
+- Open terminal and run this command to install dependencies:
+yarn install
+
+- Next start the application with this command:
+yarn start
+
+- Navigate to http://localhost:3000/
+
+That's it for the frontend side of the project.
+
+LICENCE:
+MIT
+
+Disclaimer
+No warranty expressed or implied. Software is as is.
