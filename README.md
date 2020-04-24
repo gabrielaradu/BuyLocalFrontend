@@ -33,11 +33,11 @@ NPM
 Yarn
 - yarn install
 
-a) Requirements:
+3. Requirements:
  - Node.js
  - A Twilio account
  
-b) Twilio Account Settings
+3.1 Twilio Account Settings
  - Account Sid:	Your primary Twilio account identifier - find this in the Console.
  - Auth Token: Used to authenticate - just like the above, you'll find this here.
  - Phone number: A Twilio phone number
