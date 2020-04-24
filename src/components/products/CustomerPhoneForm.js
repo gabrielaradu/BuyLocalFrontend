@@ -24,7 +24,8 @@ class CustomerPhoneForm extends Component {
                           isSubmitting,
                       }) => (
                         <form onSubmit={handleSubmit}>
-                            <label htmlFor="phone" className="text-black mr-3">A phone number that we can reach you at:</label>
+                            <label htmlFor="phone" className="text-black mr-3">A phone number that we can reach you at.
+                                Only for demo purposes this would be the number for vendors as well:</label>
                             <Field
                                 name="phone"
                                 type="phone"
