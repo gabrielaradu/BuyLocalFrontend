@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ProductService} from "../../services/ProductService";
 import VendorDetailsItem from "./VendorDetailsItem";
+import CustomerPhoneForm from "./CustomerPhoneForm";
 
 class Products extends Component {
     productService = null;
@@ -17,6 +18,7 @@ class Products extends Component {
             addedProducts: [],
             totalSum: 0.00,
             currency: '',
+            customerPhoneNumber: '',
         }
     }
 
@@ -30,6 +32,7 @@ class Products extends Component {
                 <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
                     <div className="w-2/3 mx-auto">
                         <div className="bg-white shadow-md rounded my-6">
+                            <CustomerPhoneForm addCustomerPhoneNumber={(phone) => this.addCustomerPhoneNumber(phone)}/>
                             <table
                                 className="text-left w-full border-collapse">
                                 <thead>
@@ -83,12 +86,16 @@ class Products extends Component {
     };
 
     savePreOrder = async () => {
-        //TODO add a phone nr here
-        let customerPhoneNumber = "";
-        await this._getProductService().preOrderProducts(this.state.addedProducts, customerPhoneNumber);
+        debugger
+        await this._getProductService().preOrderProducts(this.state.addedProducts, this.state.customerPhoneNumber);
     };
 
     noDataFound() {}
+
+    addCustomerPhoneNumber = (phone) => {
+        debugger
+        this.setState({customerPhoneNumber: phone});
+    };
 
     updateProductsForVendor = (vendorId, vendorName, productId, productName, selectedQuantity, quantityType) => {
         let existingData = this.state.addedProducts.length > 0 && this.state.addedProducts.filter((item, index) => item.vendorId === vendorId);

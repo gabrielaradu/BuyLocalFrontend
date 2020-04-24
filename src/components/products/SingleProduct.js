@@ -61,7 +61,7 @@ class SingleProduct extends Component {
                           isSubmitting,
                       }) => (
                         <form onSubmit={handleSubmit}>
-                            <Field type="name" name="name" className="text-pink-500 font-bold"/>
+                            <Field type="name" name="name" className="text-black font-bold" disabled/>
                             <ErrorMessage name="name" component="div"/>
                             <Field
                                 component="select"
