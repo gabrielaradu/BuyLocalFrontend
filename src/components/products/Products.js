@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {ProductService} from "../../services/ProductService";
 import VendorDetailsItem from "./VendorDetailsItem";
 import CustomerPhoneForm from "./CustomerPhoneForm";
+import "react-responsive-modal/styles.css";
+import {Modal} from "react-responsive-modal";
 
 class Products extends Component {
     productService = null;
@@ -20,8 +22,8 @@ class Products extends Component {
             currency: '',
             customerPhoneNumber: '',
             showProductList: false,
-            errorMessage: '',
-            successMessage: '',
+            message: '',
+            isOpen: false,
         }
     }
 
@@ -58,12 +60,12 @@ class Products extends Component {
                                             The order is not final until we confirm it by SMS
                                         </dd>
                                     </div>
-                                    <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2">
-                                        <dt className="text-sm leading-5 font-bold text-black">
+                                    <div className="flex-1 px-4 py-2 m-2">
+                                        <dt className="text-sm leading-5 font-bold text-black text-center px-4 py-2 m-2">
                                             Total: {this.state.totalSum} {this.state.currency}
                                         </dt>
                                     </div>
-                                    <div className="text-gray-700 text-center m-2">
+                                    <div className="flex-1 px-4 py-2 m-2">
                                         <button
                                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                             onClick={() => this.savePreOrder()}>
@@ -71,9 +73,21 @@ class Products extends Component {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="text-gray-700 text-center m-2">
-                                    {this.state.successMessage ? this.state.successMessage : this.state.errorMessage}
-                                </div>
+                                <Modal open={this.state.isOpen} center>
+                                    <div
+                                        className="animated fadeInUp fixed shadow-inner max-w-md md:relative pin-b pin-x align-top m-auto justify-end md:justify-center p-8 bg-white md:rounded w-full md:h-auto md:shadow flex flex-col">
+                                        <h2 className="text-4xl text-center font-hairline md:leading-loose text-grey md:mt-8 mb-4">Hello!</h2>
+                                        <p className="text-xl leading-normal mb-8 text-center">
+                                            {this.state.message}
+                                        </p>
+                                        <div className="inline-flex justify-center">
+                                            <button onClick={this.toggleModal}
+                                                    className="bg-grey-lighter flex-1 border-b-2 md:flex-none border-green ml-2 hover:bg-green-lightest text-grey-darkest font-bold py-4 px-6 rounded">
+                                                OK
+                                            </button>
+                                        </div>
+                                    </div>
+                                </Modal>
                             </div>
                         </div>
                     </div>
@@ -93,26 +107,30 @@ class Products extends Component {
     };
 
     savePreOrder = async () => {
-        try {
+        let message;
+        if (this.state.addedProducts.length === 0) {
+            // User didn't choose any products
+            message = "Please choose some products before making a pre-order.";
+        } else {
+            // Try to make the request with selected products
             const preOrderProducts = await this._getProductService().preOrderProducts(this.state.addedProducts, this.state.customerPhoneNumber);
-            if (preOrderProducts !== undefined && preOrderProducts.length > 0) {
-                this.setState({
-                    successMessage: "The pre-order was successfully sent to vendors. Please wait for confirmation by SMS.",
-                    errorMessage: ''
-                })
-            } else {
-                this.setState({
-                    errorMessage: "Choose some products before making a pre-order.",
-                    successMessage: ''
-                })
+            if (preOrderProducts === undefined) {
+                message = "Something happened and an error occurred when trying to send request. Please try again or contact us at test@email.com.";
+            } else if (preOrderProducts.length > 0) {
+                message = "The pre-order was successfully sent to vendors. Please wait for confirmation by SMS.";
             }
-        } catch (e) {
-            debugger
-            this.setState({
-                errorMessage: "Something happened and an error occurred when trying to send request. Please try again or contact us at test@email.com.",
-                successMessage: ''
-            })
         }
+
+        this.setState({
+            message: message,
+        });
+        this.toggleModal();
+    };
+
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
     };
 
     noDataFound() {}
