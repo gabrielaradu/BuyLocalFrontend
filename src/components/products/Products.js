@@ -19,6 +19,9 @@ class Products extends Component {
             totalSum: 0.00,
             currency: '',
             customerPhoneNumber: '',
+            showProductList: false,
+            errorMessage: '',
+            successMessage: '',
         }
     }
 
@@ -39,7 +42,7 @@ class Products extends Component {
                                 <tr></tr>
                                 </thead>
                                 <tbody>
-                                {Object.entries(this.state.vendorsAndTheirProducts).map(option => {
+                                {this.state.showProductList && Object.entries(this.state.vendorsAndTheirProducts).map(option => {
                                     return <VendorDetailsItem key={option[0]} data={option}
                                                               addToTotal={(selectedQuantity, price, currency) => this.addToTotal(selectedQuantity, price, currency)}
                                                               updateProductsForVendor={(vendorId, vendorName, productId, productName, selectedQuantity, quantityType) =>
@@ -47,7 +50,8 @@ class Products extends Component {
                                 })}
                                 </tbody>
                             </table>
-                            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+                            <div
+                                className={this.state.showProductList ? "bg-white shadow overflow-hidden sm:rounded-lg visible" : "hidden"}>
                                 <div className="flex bg-pink-200">
                                     <div className="flex-1 text-gray-200 text-center px-4 py-2 m-2">
                                         <dd className="mt-1 text-lg leading-5 text-black sm:mt-0 sm:col-span-4">
@@ -66,6 +70,9 @@ class Products extends Component {
                                             Order
                                         </button>
                                     </div>
+                                </div>
+                                <div className="text-gray-700 text-center m-2">
+                                    {this.state.successMessage ? this.state.successMessage : this.state.errorMessage}
                                 </div>
                             </div>
                         </div>
@@ -86,15 +93,35 @@ class Products extends Component {
     };
 
     savePreOrder = async () => {
-        debugger
-        await this._getProductService().preOrderProducts(this.state.addedProducts, this.state.customerPhoneNumber);
+        try {
+            const preOrderProducts = await this._getProductService().preOrderProducts(this.state.addedProducts, this.state.customerPhoneNumber);
+            if (preOrderProducts !== undefined && preOrderProducts.length > 0) {
+                this.setState({
+                    successMessage: "The pre-order was successfully sent to vendors. Please wait for confirmation by SMS.",
+                    errorMessage: ''
+                })
+            } else {
+                this.setState({
+                    errorMessage: "Choose some products before making a pre-order.",
+                    successMessage: ''
+                })
+            }
+        } catch (e) {
+            debugger
+            this.setState({
+                errorMessage: "Something happened and an error occurred when trying to send request. Please try again or contact us at test@email.com.",
+                successMessage: ''
+            })
+        }
     };
 
     noDataFound() {}
 
     addCustomerPhoneNumber = (phone) => {
-        debugger
-        this.setState({customerPhoneNumber: phone});
+        this.setState({
+            customerPhoneNumber: phone,
+            showProductList: true
+        });
     };
 
     updateProductsForVendor = (vendorId, vendorName, productId, productName, selectedQuantity, quantityType) => {
@@ -102,14 +129,24 @@ class Products extends Component {
         if (existingData.length > 0) {
             // We already have saved something for this vendor. we need to update the product array
             let products = existingData[0].products;
-            products.push({productId: productId, productName: productName, selectedQuantity: selectedQuantity, quantityType: quantityType});
+            products.push({
+                productId: productId,
+                productName: productName,
+                selectedQuantity: selectedQuantity,
+                quantityType: quantityType
+            });
         } else {
             // We don't already have data for this vendor
             this.setState({
                 addedProducts: [...this.state.addedProducts, {
                     vendorId: vendorId,
                     vendorName: vendorName,
-                    products: [{productId: productId, productName: productName, selectedQuantity: selectedQuantity, quantityType: quantityType}],
+                    products: [{
+                        productId: productId,
+                        productName: productName,
+                        selectedQuantity: selectedQuantity,
+                        quantityType: quantityType
+                    }],
                 }]
             });
         }
