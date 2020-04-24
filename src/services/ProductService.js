@@ -14,4 +14,8 @@ export class ProductService {
     preOrderProducts(bodyData, customerPhoneNumber) {
         return this.getAjaxService().post(`/pre-order/${customerPhoneNumber}`, bodyData);
     }
+
+    vendorAcceptsOrder(uuid) { return this.getAjaxService().get(`/pre-order/accept/${uuid}`)};
+
+    vendorDeniesOrder(uuid) { return this.getAjaxService().get(`/pre-order/deny/${uuid}`)};
 }
