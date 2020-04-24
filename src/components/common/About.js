@@ -29,7 +29,7 @@ class About extends Component {
                                     <div className="ml-4">
                                         <h5 className="text-lg leading-6 font-medium text-black">You choose what food/ingredients you want</h5>
                                         <p className="mt-1 text-base leading-6 text-black">
-                                            You will use your phone number for this pre-order, at which you will receive a verification SMS Code. It's your job to know if your mobile package can receive SMS
+                                            You will use your phone number to order demo products, at which you will receive a confirmation SMS Code. It's your job to know if your mobile package can receive SMS
                                         </p>
                                     </div>
                                 </div>
