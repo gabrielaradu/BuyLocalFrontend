@@ -109,13 +109,11 @@ class Products extends Component {
     savePreOrder = async () => {
         let message;
         if (this.state.addedProducts.length === 0) {
-            // User didn't choose any products
             message = "Please choose some products before making a pre-order.";
         } else {
-            // Try to make the request with selected products
             const preOrderProducts = await this._getProductService().preOrderProducts(this.state.addedProducts, this.state.customerPhoneNumber);
             if (preOrderProducts === undefined) {
-                message = "Something happened and an error occurred when trying to send request. Please try again or contact us at test@email.com.";
+                message = "This is a demo for a past online hackathon and the feature of sending SMS is not active, for obvious reasons.";
             } else if (preOrderProducts.length > 0) {
                 message = "The pre-order was successfully sent to vendors. Please wait for confirmation by SMS.";
             }
