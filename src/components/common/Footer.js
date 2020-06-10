@@ -10,8 +10,7 @@ class Footer extends Component {
                             <div className="px-3 md:px-0">
                                 <h3 className="font-bold text-black">About</h3>
                                 <p className="py-4 text-black">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis
-                                    tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+                                    Implemented and created by @Gabriela Radu
                                 </p>
                             </div>
                         </div>
@@ -21,7 +20,7 @@ class Footer extends Component {
                                 <ul className="list-reset items-center pt-3">
                                     <li>
                                         <a className="text-black inline-block no-underline hover:text-black hover:underline py-1"
-                                           href="#">Add social links</a>
+                                           href="https://www.linkedin.com/in/gabirr/">LinkedIn</a>
                                     </li>
                                 </ul>
                             </div>
